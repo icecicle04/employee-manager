@@ -11,3 +11,5 @@ const connection = mysql.createConnection({
   password: "Braves2020",
   database: "employee_DB",
 });
+
+// inquirer promp for CL goes here
