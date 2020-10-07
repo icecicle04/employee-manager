@@ -4,7 +4,9 @@
   "description": "a command-line application that allows the user to: *Add departments, roles, employees    * View departments, roles, employees    * Update employee roles",
   "main": "employees.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node employees.js",
+    "dev": "nodemon employees.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/icecicle04/employee-manager#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "inquirer": "^7.3.3",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.4"

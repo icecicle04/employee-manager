@@ -20,7 +20,7 @@ CREATE TABLE employee
 
     CREATE TABLE role
     (
-        id INT REFERENCES employeee,
+        id INT REFERENCES employee,
         title VARCHAR (30),
         salary DECIMAL,
         department_id INTEGER
@@ -31,3 +31,10 @@ CREATE TABLE employee
         id INT REFERENCES employee,
         name VARCHAR (30)
     );
+
+    SELECT *
+    FROM employee;
+    SELECT *
+    FROM department;
+    SELECT *
+    FROM role;
