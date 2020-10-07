@@ -85,6 +85,7 @@ function addEmployee() {
         }
       );
     });
+  employeePrompt();
 }
 // inquirer promp for CL goes here
 

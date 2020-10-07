@@ -16,7 +16,7 @@ CREATE TABLE employee
     manager_id INTEGER,
     PRIMARY KEY
     (id)
-);
+    );
 
     CREATE TABLE role
     (
@@ -29,8 +29,21 @@ CREATE TABLE employee
     CREATE TABLE department
     (
         id INT REFERENCES employee,
-        name VARCHAR (30)
+        department_name VARCHAR (30)
     );
+
+    -- --join for employee & role -- 
+    SELECT *
+    FROM employee LEFT JOIN role ON employee.id = employee.id;
+
+    -- join for employee & department -- 
+    SELECT *
+    FROM employee LEFT JOIN department ON employee.id = employee.id;
+
+    -- join for employee & department & role --  
+    SELECT employee.first_name, employee.last_name, employee.role_id, employee.manager_id, role.title, role.salary, role.department_id, department.department_name
+    FROM employee INNER JOIN role ON role.id = role.id INNER JOIN department ON department.id = department.id
+    ORDER BY employee.id ASC;
 
     SELECT *
     FROM employee;
