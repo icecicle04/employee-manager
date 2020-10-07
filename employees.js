@@ -21,10 +21,10 @@ let query = "SELECT employee, role, department";
 console.log(query);
 connection.connect(function (err) {
   if (err) throw err;
-  runSearch();
+  employeePrompt();
 });
 
-function runSearch() {
+function employeePrompt() {
   inquirer
     .prompt({
       name: "action",
@@ -42,6 +42,48 @@ function runSearch() {
           deleteEmployee();
           break;
       }
+    });
+}
+// functions
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        name: "employee_first_name",
+        type: "input",
+        message: "What is the employee's first name?",
+      },
+      {
+        name: "employee_last_name",
+        type: "input",
+        message: "What is the employee's last name?",
+      },
+      {
+        name: "employee_role_id",
+        type: "input",
+        message: "What is the employee's role id?",
+      },
+      {
+        name: "employee_department_id",
+        type: "input",
+        message: "What is the employee's department id?",
+      },
+    ])
+
+    .then(function (answer) {
+      connection.query(
+        "INSERT INTO employee SET ?",
+        {
+          first_name: answer.employee_first_name,
+          last_name: answer.employee_last_name,
+          role_id: answer.employee_role_id,
+          manager_id: answer.employee_department_id,
+        },
+        function (err) {
+          if (err) throw err;
+          console.log("Your employee has been added!");
+        }
+      );
     });
 }
 // inquirer promp for CL goes here
