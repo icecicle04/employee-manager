@@ -2,10 +2,23 @@
 
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const { table } = require("console");
 // const express = require("express");
 // const { table } = require("employeeSeeds.sql");
 
+// roles and department options
+const roles = [
+  "Software Engineer",
+  "CEO",
+  "Data Analyst",
+  "Client Service Analyst",
+  "HR Coordinator",
+];
+const departments = [
+  "Technology",
+  "Human Resources",
+  "Client Services",
+  "Operations",
+];
 // connections
 // const app = express();
 const PORT = 3306;
@@ -30,7 +43,15 @@ function employeePrompt() {
       name: "action",
       type: "rawlist",
       message: "What would you like to do?",
-      choices: ["Add Employee", "Delete Employee"],
+      choices: [
+        "Add Employee",
+        "Add Roles",
+        "Add Departments",
+        "View Employees",
+        "View Roles",
+        "View Departments",
+        "Update Employee Roles",
+      ],
     })
     .then(function (answer) {
       switch (answer.action) {
@@ -84,8 +105,8 @@ function addEmployee() {
           console.log("Your employee has been added!");
         }
       );
+      employeePrompt();
     });
-  employeePrompt();
 }
 // inquirer promp for CL goes here
 
