@@ -100,9 +100,16 @@ function addEmployee() {
         message: "What is the employee's last name?",
       },
       {
-        name: "employee_role_id",
-        type: "input",
-        message: "What is the employee's role id?",
+        name: "role_title",
+        type: "list",
+        message: "What is the employee's role title?",
+        choices: [
+          "Software Engineer",
+          "CEO",
+          "Data Analyst",
+          "Client Service Analyst",
+          "HR Coordinator",
+        ],
       },
       {
         name: "employee_department_id",
@@ -117,8 +124,11 @@ function addEmployee() {
         {
           first_name: answer.employee_first_name,
           last_name: answer.employee_last_name,
-          role_id: answer.employee_role_id,
           manager_id: answer.employee_department_id,
+        },
+        "INSERT INTO role SET ?",
+        {
+          role_title: answer.role_title,
         },
         function (err) {
           if (err) throw err;
