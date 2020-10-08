@@ -59,8 +59,28 @@ function employeePrompt() {
           addEmployee();
           break;
 
-        case "Delete Employee":
-          deleteEmployee();
+        case "Add Roles":
+          addRoles();
+          break;
+
+        case "Add Departments":
+          addDepartments();
+          break;
+
+        case "View Employees":
+          viewEmployees();
+          break;
+
+        case "View Roles":
+          viewRoles();
+          break;
+
+        case "View Departments":
+          viewDepartments();
+          break;
+
+        case "Update Employee Roles":
+          updateEmployeeRoles();
           break;
       }
     });
