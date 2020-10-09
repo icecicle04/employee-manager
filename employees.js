@@ -30,8 +30,11 @@ const connection = mysql.createConnection({
   password: "Braves2020",
   database: "employees_db",
 });
-let query = "SELECT employee, role, department";
-console.log(query);
+let query =
+  "SELECT employee.first_name, employee.last_name, employee.manager_id, role.title, role.salary, department.department_name";
+query +=
+  "FROM employee INNER JOIN role ON employee.id = employee.id INNER JOIN department ON employee.id = employee.id;";
+// connection.query(query);
 connection.connect(function (err) {
   if (err) throw err;
   employeePrompt();
@@ -126,10 +129,9 @@ function addEmployee() {
           last_name: answer.employee_last_name,
           manager_id: answer.employee_department_id,
         },
-        "INSERT INTO role SET ?",
-        {
+        connection.query("INSERT INTO role SET ?", {
           role_title: answer.role_title,
-        },
+        }),
         function (err) {
           if (err) throw err;
           console.log("Your employee has been added!");
