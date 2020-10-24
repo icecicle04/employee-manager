@@ -103,6 +103,23 @@ function addEmployee() {
         message: "What is the employee's last name?",
       },
       {
+        name: "employee_manager_id",
+        type: "input",
+        message: "What is the employee's manager id?",
+      },
+    ])
+    .then(function (answer) {
+      connection.query("INSERT INTO employee SET ?", {
+        first_name: answer.employee_first_name,
+        last_name: answer.employee_last_name,
+        manager_id: answer.employee_department_id,
+      });
+    });
+}
+(function addRole() {
+  inquirer
+    .prompt([
+      {
         name: "role_title",
         type: "list",
         message: "What is the employee's role title?",
@@ -114,31 +131,18 @@ function addEmployee() {
           "HR Coordinator",
         ],
       },
-      {
-        name: "employee_manager_id",
-        type: "input",
-        message: "What is the employee's manager id?",
-      },
     ])
     .then(function (answer) {
-      connection.query(
-        "INSERT INTO employee SET ?",
-        {
-          first_name: answer.employee_first_name,
-          last_name: answer.employee_last_name,
-          manager_id: answer.employee_department_id,
-        },
-        connection.query("INSERT INTO role SET ?", {
-          role_title: answer.role_title,
-        }),
-        function (err) {
-          if (err) throw err;
-          console.log("Your employee has been added!");
-        }
-      );
-      employeePrompt();
+      connection.query("INSERT INTO role SET ?", {
+        role_title: answer.role_title,
+      });
     });
-}
+
+  if (err) throw err;
+  console.log("Your employee has been added!");
+  employeePrompt();
+});
+
 // inquirer promp for CL goes here
 
 // listener
