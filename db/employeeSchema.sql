@@ -4,6 +4,18 @@ CREATE DATABASE employees_db;
 
 USE employees_db;
 
+CREATE TABLE department(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    department_name VARCHAR (30)
+    );
+    
+CREATE TABLE role (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    role_title VARCHAR (30),
+    salary DECIMAL,
+    department_id INTEGER
+    );
+
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR
@@ -15,19 +27,6 @@ CREATE TABLE employee (
     CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES role(id),
     manager_id INT NOT NULL
     );
-
-CREATE TABLE role (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    role_title VARCHAR (30),
-    salary DECIMAL,
-    department_id INTEGER
-    );
-
-CREATE TABLE department(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    department_name VARCHAR (30)
-    );
-
 -- --join for employee & role -- 
 SELECT *
 FROM employee LEFT JOIN role ON employee.id = employee.id;
