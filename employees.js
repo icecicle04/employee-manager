@@ -115,12 +115,11 @@ function addEmployee() {
         ],
       },
       {
-        name: "employee_department_id",
+        name: "employee_manager_id",
         type: "input",
-        message: "What is the employee's department id?",
+        message: "What is the employee's manager id?",
       },
     ])
-
     .then(function (answer) {
       connection.query(
         "INSERT INTO employee SET ?",
