@@ -7,37 +7,31 @@ USE employees_db;
 CREATE TABLE employee
 (
     id INT NOT NULL
-    AUTO_INCREMENT,
+    AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR
-    (30),
+    (30) NOT NULL,
     last_name VARCHAR
-    (30),
+    (30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INTEGER,
-    PRIMARY KEY
-    (id)
     );
 
     CREATE TABLE role
     (
         id INT NOT NULL
-        AUTO_INCREMENT,
+        AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR
         (30),
     salary DECIMAL,
     department_id INTEGER,
-    PRIMARY KEY
-        (id)
     );
 
         CREATE TABLE department
         (
             id INT NOT NULL
-            AUTO_INCREMENT,
+            AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR
             (30),
-    PRIMARY KEY
-            (id)
     );
 
             -- --join for employee & role -- 
