@@ -13,7 +13,7 @@ CREATE TABLE employee
     last_name VARCHAR
     (30) NOT NULL,
     role_id INT NOT NULL,
-    manager_id INTEGER,
+    manager_id INTEGER
     );
 
     CREATE TABLE role
@@ -23,7 +23,7 @@ CREATE TABLE employee
     title VARCHAR
         (30),
     salary DECIMAL,
-    department_id INTEGER,
+    department_id INTEGER
     );
 
         CREATE TABLE department
@@ -31,7 +31,7 @@ CREATE TABLE employee
             id INT NOT NULL
             AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR
-            (30),
+            (30)
     );
 
             -- --join for employee & role -- 
