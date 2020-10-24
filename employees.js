@@ -115,9 +115,9 @@ function addEmployee() {
         last_name: answer.employee_last_name,
         manager_id: answer.employee_manager_id,
       });
+      if (err) throw err;
+      console.log("Employee information logged!");
     });
-  if (err) throw err;
-  console.log("Employee information logged!");
 }
 function addRole() {
   inquirer
@@ -139,11 +139,10 @@ function addRole() {
       connection.query("INSERT INTO role SET ?", {
         role_title: answer.role_title,
       });
+      if (err) throw err;
+      console.log("Your employee has been added!");
+      employeePrompt();
     });
-
-  if (err) throw err;
-  console.log("Your employee has been added!");
-  employeePrompt();
 }
 
 // inquirer promp for CL goes here
