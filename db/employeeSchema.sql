@@ -24,7 +24,7 @@ CREATE TABLE employee (
     (30) NOT NULL,
     last_name VARCHAR
     (30) NOT NULL,
-    role_id INT NOT NULL,
+    role_id INT,
     INDEX role_ind (role_id),
     CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES role(id),
     manager_id INT NOT NULL

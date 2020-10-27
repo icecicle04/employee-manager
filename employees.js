@@ -106,6 +106,19 @@ function addEmployee() {
         name: "employee_manager_id",
         type: "input",
         message: "What is the employee's manager id?",
+        choices: [1, 2, 3, 4, 5],
+      },
+      {
+        name: "employee_role_id",
+        type: "input",
+        message: "What is the employee's role id?",
+        choices: [
+          { name: "Software Engineer", value: 1 },
+          { name: "CEO", value: 2 },
+          { name: "Data Analyst", value: 3 },
+          { name: "Client Service Analyst", value: 4 },
+          { name: "Human Resources Coordinator", value: 5 },
+        ],
       },
     ])
     .then(function (answer) {
@@ -113,6 +126,7 @@ function addEmployee() {
         first_name: answer.employee_first_name,
         last_name: answer.employee_last_name,
         manager_id: answer.employee_manager_id,
+        role_id: answer.employee_role_id.value,
       });
     })
     .then(function addRole() {
@@ -135,12 +149,14 @@ function addEmployee() {
           connection.query("INSERT INTO role SET ?", {
             role_title: answer.role_title,
           });
-          if (err) throw err;
+          (err, data) => {
+            if (err) throw err;
+          };
           console.log("Your employee has been added!");
-          employeePrompt();
         });
     });
 }
+employeePrompt();
 
 // inquirer promp for CL goes here
 
