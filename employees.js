@@ -115,8 +115,6 @@ function addEmployee() {
         last_name: answer.employee_last_name,
         manager_id: answer.employee_manager_id,
       });
-      if (err) throw err;
-      console.log("Employee information logged!");
     });
 }
 function addRole() {
