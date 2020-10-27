@@ -5,20 +5,6 @@ const inquirer = require("inquirer");
 // const express = require("express");
 // const { table } = require("employeeSeeds.sql");
 
-// roles and department options
-const roles = [
-  "Software Engineer",
-  "CEO",
-  "Data Analyst",
-  "Client Service Analyst",
-  "HR Coordinator",
-];
-const departments = [
-  "Technology",
-  "Human Resources",
-  "Client Services",
-  "Operations",
-];
 // connections
 // const app = express();
 const PORT = 3306;
@@ -30,17 +16,20 @@ const connection = mysql.createConnection({
   password: "Braves2020",
   database: "employees_db",
 });
+
 let query =
   "SELECT employee.first_name, employee.last_name, employee.manager_id, role.title, role.salary, department.department_name";
 query +=
   "FROM employee INNER JOIN role ON employee.id = employee.id INNER JOIN department ON employee.id = employee.id;";
 // connection.query(query);
+
 connection.connect((err) => {
   if (err) throw err;
   console.log("Employee Management System");
   employeePrompt();
 });
 
+// inquirer promp for CL goes here
 function employeePrompt() {
   console.log("---------------");
   inquirer
@@ -94,6 +83,8 @@ function employeePrompt() {
 }
 // functions
 function addEmployee() {
+  console.log("Let's add an employee!");
+  console.log("----------------------");
   inquirer
     .prompt([
       {
@@ -130,38 +121,43 @@ function addEmployee() {
         first_name: answer.employee_first_name,
         last_name: answer.employee_last_name,
         manager_id: answer.employee_manager_id,
-        role_id: answer.employee_role_id.value,
+        role_id: parseInt(answer.employee_role_id),
       });
-    })
-    .then(function addRole() {
-      inquirer
-        .prompt([
-          {
-            name: "role_title",
-            type: "list",
-            message: "What is the employee's role title?",
-            choices: [
-              "Software Engineer",
-              "CEO",
-              "Data Analyst",
-              "Client Service Analyst",
-              "HR Coordinator",
-            ],
-          },
-        ])
-        .then(function (answer) {
-          connection.query("INSERT INTO role SET ?", {
-            role_title: answer.role_title,
-          });
-          (err, data) => {
-            if (err) throw err;
-          };
-          console.log("Your employee has been added!");
-        });
+      (err, data) => {
+        if (err) throw err;
+      };
+      console.log("Your employee has been added!");
+    });
+
+  employeePrompt();
+}
+
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        name: "role_title",
+        type: "list",
+        message: "What is the employee's role title?",
+        choices: [
+          "Software Engineer",
+          "CEO",
+          "Data Analyst",
+          "Client Service Analyst",
+          "HR Coordinator",
+        ],
+      },
+    ])
+    .then(function (answer) {
+      connection.query("INSERT INTO role SET ?", {
+        role_title: answer.role_title,
+      });
+      (err, data) => {
+        if (err) throw err;
+      };
+      console.log("Your employee has been added!");
     });
 }
-employeePrompt();
-// inquirer promp for CL goes here
 
 // listener
 
