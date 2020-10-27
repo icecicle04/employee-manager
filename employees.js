@@ -35,27 +35,31 @@ let query =
 query +=
   "FROM employee INNER JOIN role ON employee.id = employee.id INNER JOIN department ON employee.id = employee.id;";
 // connection.query(query);
-connection.connect(function (err) {
+connection.connect((err) => {
   if (err) throw err;
+  console.log("Employee Management System");
   employeePrompt();
 });
 
 function employeePrompt() {
+  console.log("---------------");
   inquirer
-    .prompt({
-      name: "action",
-      type: "rawlist",
-      message: "What would you like to do?",
-      choices: [
-        "Add Employee",
-        "Add Roles",
-        "Add Departments",
-        "View Employees",
-        "View Roles",
-        "View Departments",
-        "Update Employee Roles",
-      ],
-    })
+    .prompt([
+      {
+        name: "action",
+        type: "rawlist",
+        message: "What would you like to do?",
+        choices: [
+          "Add Employee",
+          "Add Roles",
+          "Add Departments",
+          "View Employees",
+          "View Roles",
+          "View Departments",
+          "Update Employee Roles",
+        ],
+      },
+    ])
     .then(function (answer) {
       switch (answer.action) {
         case "Add Employee":
@@ -104,13 +108,13 @@ function addEmployee() {
       },
       {
         name: "employee_manager_id",
-        type: "input",
+        type: "list",
         message: "What is the employee's manager id?",
         choices: [1, 2, 3, 4, 5],
       },
       {
         name: "employee_role_id",
-        type: "input",
+        type: "list",
         message: "What is the employee's role id?",
         choices: [
           { name: "Software Engineer", value: 1 },
@@ -157,7 +161,6 @@ function addEmployee() {
     });
 }
 employeePrompt();
-
 // inquirer promp for CL goes here
 
 // listener
