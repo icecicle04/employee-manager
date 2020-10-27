@@ -60,7 +60,6 @@ function employeePrompt() {
       switch (answer.action) {
         case "Add Employee":
           addEmployee();
-          addRole();
           break;
 
         case "Add Roles":
@@ -115,31 +114,31 @@ function addEmployee() {
         last_name: answer.employee_last_name,
         manager_id: answer.employee_manager_id,
       });
-    });
-}
-function addRole() {
-  inquirer
-    .prompt([
-      {
-        name: "role_title",
-        type: "list",
-        message: "What is the employee's role title?",
-        choices: [
-          "Software Engineer",
-          "CEO",
-          "Data Analyst",
-          "Client Service Analyst",
-          "HR Coordinator",
-        ],
-      },
-    ])
-    .then(function (answer) {
-      connection.query("INSERT INTO role SET ?", {
-        role_title: answer.role_title,
-      });
-      if (err) throw err;
-      console.log("Your employee has been added!");
-      employeePrompt();
+    })
+    .then(function addRole() {
+      inquirer
+        .prompt([
+          {
+            name: "role_title",
+            type: "list",
+            message: "What is the employee's role title?",
+            choices: [
+              "Software Engineer",
+              "CEO",
+              "Data Analyst",
+              "Client Service Analyst",
+              "HR Coordinator",
+            ],
+          },
+        ])
+        .then(function (answer) {
+          connection.query("INSERT INTO role SET ?", {
+            role_title: answer.role_title,
+          });
+          if (err) throw err;
+          console.log("Your employee has been added!");
+          employeePrompt();
+        });
     });
 }
 
