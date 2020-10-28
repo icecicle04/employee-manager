@@ -139,25 +139,25 @@ function addRoles() {
     .prompt([
       {
         name: "role_title",
-        type: "list",
-        message: "What is the employee's role title?",
-        choices: [
-          "Software Engineer",
-          "CEO",
-          "Data Analyst",
-          "Client Service Analyst",
-          "HR Coordinator",
-        ],
+        type: "input",
+        message: "What role would you like to add?",
+      },
+      {
+        name: "department_id",
+        type: "input",
+        message: "What is the corresponding department ID for this role?",
+        choices: [1, 2, 3, 4],
       },
     ])
     .then(function (answer) {
       connection.query("INSERT INTO role SET ?", {
         role_title: answer.role_title,
+        department_id: answer.department_id,
       });
       (err, data) => {
         if (err) throw err;
       };
-      console.log("Your employee has been added!");
+      console.log("New role has been added!");
     });
 }
 
