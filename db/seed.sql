@@ -10,10 +10,10 @@ VALUES
     ("Human Resources");
 
 INSERT INTO role
-    (role_title)
+    (role_title, department_id)
 VALUES
-    ("Software Engineer"),
-    ("CEO"),
-    ("Data Analyst"),
-    ("Client Service Analyst"),
-    ("HR Coordinator");
+    ("Software Engineer", 1),
+    ("CEO", 2),
+    ("Data Analyst", 1),
+    ("Client Service Analyst", 3),
+    ("HR Coordinator", 4);
