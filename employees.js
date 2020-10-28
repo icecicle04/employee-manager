@@ -26,11 +26,11 @@ query +=
 connection.connect((err) => {
   if (err) throw err;
   console.log("Employee Management System");
-  employeePrompt();
+  init();
 });
 
 // inquirer promp for CL goes here
-function employeePrompt() {
+function init() {
   console.log("---------------");
   inquirer
     .prompt([
@@ -128,8 +128,6 @@ function addEmployee() {
       };
       console.log("Your employee has been added!");
     });
-
-  employeePrompt();
 }
 
 function addRole() {
