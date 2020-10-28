@@ -130,6 +130,7 @@ function addEmployee() {
         if (err) throw err;
       };
       console.log("Your employee has been added!");
+      init();
     });
 }
 
