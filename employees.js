@@ -146,7 +146,7 @@ function addRoles() {
         name: "department_id",
         type: "input",
         message: "What is the corresponding department ID for this role?",
-        choices: [1, 2, 3, 4],
+        choices: [1, 2, 3, 4, 5],
       },
     ])
     .then(function (answer) {
@@ -165,6 +165,26 @@ function viewEmployees() {
   console.log("Employee View");
   console.log("-------------");
   connection.query("SELECT * FROM employee", (err, data) => {
+    if (err) throw err;
+    console.table(data);
+    init();
+  });
+}
+
+function viewRoles() {
+  console.log("Role View");
+  console.log("-------------");
+  connection.query("SELECT * FROM role", (err, data) => {
+    if (err) throw err;
+    console.table(data);
+    init();
+  });
+}
+
+function viewDepartments() {
+  console.log("Department View");
+  console.log("-------------");
+  connection.query("SELECT * FROM departments", (err, data) => {
     if (err) throw err;
     console.table(data);
     init();
