@@ -134,7 +134,17 @@ function addEmployee() {
     });
 }
 
-function addRole() {
+function viewEmployees() {
+  console.log("Employee View");
+  console.log("-------------");
+  connection.query("SELECT * FROM employee", (err, data) => {
+    if (err) throw err;
+    console.table(data);
+    init();
+  });
+}
+
+function addRoles() {
   inquirer
     .prompt([
       {
