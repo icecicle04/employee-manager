@@ -79,6 +79,9 @@ function init() {
           updateEmployeeRoles();
           break;
       }
+    })
+    .catch((err) => {
+      if (err) throw err;
     });
 }
 // functions

@@ -15,7 +15,7 @@ CREATE TABLE role (
     salary DECIMAL,
     department_id INT NOT NULL,
     INDEX department_ind (department_id),
-    CONSTRAINT fk_department_id FOREIGN KEY (department_id) REFERENCES department(id)
+    FOREIGN KEY (department_id) REFERENCES department(id)
     );
 
 CREATE TABLE employee (
@@ -26,7 +26,7 @@ CREATE TABLE employee (
     (30) NOT NULL,
     role_id INT,
     INDEX role_ind (role_id),
-    CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES role(id),
+    FOREIGN KEY (role_id) REFERENCES role(id),
     manager_id INT NOT NULL
     );
 -- --join for employee & role -- 
