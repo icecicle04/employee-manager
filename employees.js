@@ -158,6 +158,7 @@ function addRoles() {
         if (err) throw err;
       };
       console.log("New role has been added!");
+      init();
     });
 }
 
@@ -184,7 +185,7 @@ function viewRoles() {
 function viewDepartments() {
   console.log("Department View");
   console.log("-------------");
-  connection.query("SELECT * FROM departments", (err, data) => {
+  connection.query("SELECT * FROM department", (err, data) => {
     if (err) throw err;
     console.table(data);
     init();
